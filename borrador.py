@@ -1,13 +1,13 @@
-# Hago la petición HTTP al servidor e imprimo el codigo de la respuesta
+## Petición HTTP al servidor
 
+# Sin editar "headers":
 url = "https://www.atrapalo.com/entradas/home_nacional/" 
 r = requests.get(url)
 print ("We got a {} response code from {}".format(r.status_code, url))
 
 # Respuesta: We got a 403 response code from https://www.atrapalo.com/entradas/home_nacional/
 
-# Por lo que hay que editar los headers
-
+# Editando "headers":
 headers={
     "Accept": "*/*",
     "Content-Encoding": "gzip",
@@ -20,3 +20,21 @@ r = requests.get("https://www.atrapalo.com/entradas/home_nacional/", headers=hea
 print ("We got a {} response code from {}".format(r.status_code, url))
 
 # Respuesta: We got a 200 response code from https://www.atrapalo.com/entradas/home_nacional/
+
+## Web crawling
+# Saco la lista de los tipos de espectáculo
+categories = soup.find_all("option", {"class":"category"})
+list_cat = []
+for category in categories:
+    list_cat.append(category.text.strip())
+print(list_cat)
+
+# Generamos los links con las categorías extraídas en el paso anterior
+queue = []
+for term in list_cat:
+    url="https://www.atrapalo.com/entradas/home_nacional/%s/#buscador" % term
+    queue.append(url)
+print(queue)
+
+# @Gabi, después de hacer esto del web crawling he visto que los links generados no funcionan, 
+# cuando los pones en el buscador y clickas enter, automáticamente el link cambia al buscador por defecto: https://www.atrapalo.com/entradas/home_nacional/#buscador
