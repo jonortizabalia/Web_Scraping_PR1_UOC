@@ -1,6 +1,6 @@
 # Web_Scraping_PR1_UOC
 
-## Autores: Ruperto Gabriel Peso Bañuelos, Jon Ortiz Abalia
+## Autores: Gabriel Peso Bañuelos, Jon Ortiz Abalia
 
 ## Descripción
 
