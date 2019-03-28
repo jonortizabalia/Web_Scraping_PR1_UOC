@@ -36,5 +36,5 @@ for term in list_cat:
     queue.append(url)
 print(queue)
 
-# @Gabi, después de hacer esto del web crawling he visto que los links generados no funcionan, 
-# cuando los pones en el buscador y clickas enter, automáticamente el link cambia al buscador por defecto: https://www.atrapalo.com/entradas/home_nacional/#buscador
+# @Gabi, después de hacer esto del web crawling he visto que los links generados no funcionan ya que en vez de extraer el texto dentro de cada atributo "classs"
+# habría que extraer el contenido del atributo "value"...y aún no lo he conseguido
