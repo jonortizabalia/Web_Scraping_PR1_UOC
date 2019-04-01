@@ -1,40 +1,71 @@
-## Petición HTTP al servidor
+### VARIABLES ###
 
-# Sin editar "headers":
-url = "https://www.atrapalo.com/entradas/home_nacional/" 
-r = requests.get(url)
-print ("We got a {} response code from {}".format(r.status_code, url))
+## Novedad
+novedad = []
+for espectaculo in espectaculos:
+    if espectaculo.find(class_="sticker-box sticker-new"):
+        novedad.append("NOVEDAD")
+    else:
+        novedad.append("NA")
+# Comprobación: el espectáculo nº31 tiene que salir como "NOVEDAD"
+print(novedad[0:35])
 
-# Respuesta: We got a 403 response code from https://www.atrapalo.com/entradas/home_nacional/
+## Nombre espectáculo
+nombreEspectaculo = []
+for espectaculo in espectaculos:
+    nombre = espectaculo.find(class_="clear nombre").text.strip()
+    NombreEspectaculo.append(nombre)
+# Compruebo las primeras 20
+print(NombreEspectaculo[0:20])
 
-# Editando "headers":
-headers={
-    "Accept": "*/*",
-    "Content-Encoding": "gzip",
-    "Cache-Control": "max-age=1206531",
-    "Connection": "keep-alive",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36",
-}
+## Localidad 
+localidad = []
+for espectaculo in espectaculos:
+    a = espectaculo.find("p", class_="info").span.text.strip()
+    b = re.findall("\(.*\)",a)
+    c = b[0]
+    d = re.sub('[(){}<>]', '', c)
+    localidad.append(d)
+# Compruebo las primeras 20
+print(localidad[0:20])
 
-r = requests.get("https://www.atrapalo.com/entradas/home_nacional/", headers=headers)
-print ("We got a {} response code from {}".format(r.status_code, url))
+## Categoría
+categoria = []
+for espectaculo in espectaculos:
+    nombre = espectaculo.find(class_="type large-loc").text.strip() 
+    categoria.append(nombre)                  
+# Compruebo las primeras 20
+print(categoria[0:20])
 
-# Respuesta: We got a 200 response code from https://www.atrapalo.com/entradas/home_nacional/
+## Público
+publico = []
+for espectaculo in espectaculos:
+    nombre = espectaculo.find(class_="item-tag").text.strip() 
+    publico.append(nombre)                  
+# Compruebo las primeras 20
+print(publico[0:20])
 
-## Web crawling
-# Saco la lista de los tipos de espectáculo
-categories = soup.find_all("option", {"class":"category"})
-list_cat = []
-for category in categories:
-    list_cat.append(category.text.strip())
-print(list_cat)
+## Precio
+precio = []
+for espectaculo in espectaculos:
+    valor = espectaculo.find(class_="status-label").text.strip() 
+    #num = re.sub('€', '', valor)
+    precio.append(valor)                 
+# Compruebo las primeras 20
+print(precio[0:20])
 
-# Generamos los links con las categorías extraídas en el paso anterior
-queue = []
-for term in list_cat:
-    url="https://www.atrapalo.com/entradas/home_nacional/%s/#buscador" % term
-    queue.append(url)
-print(queue)
+## Descuento
+descuento = []
+for espectaculo in espectaculos:
+    if espectaculo.find(class_="status-label"):
+        desc = espectaculo.find(class_="status-label").span.text
+        descuento.append(desc)
+    else:
+        descuento.append("NA")
+# Compruebo las primeras 20
+print(descuento[0:20])
 
-# @Gabi, después de hacer esto del web crawling he visto que los links generados no funcionan ya que en vez de extraer el texto dentro de cada atributo "classs"
-# habría que extraer el contenido del atributo "value"...y aún no lo he conseguido
+## Puntuacion, valoración y número de opiniones
+# NO ESTAN DISPONIBLES EN LA RESPUESTA DEL SERVIDOR!!
+# class ="opi-rating", class="opi-title" y class="show-ratings"
+
