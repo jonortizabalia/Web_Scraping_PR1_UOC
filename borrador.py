@@ -48,7 +48,7 @@ print(publico[0:20])
 ## Precio
 precio = []
 for espectaculo in espectaculos:
-    valor = espectaculo.find(class_="status-label").text.strip() 
+    valor = espectaculo.find(class_="value").text.strip() 
     #num = re.sub('€', '', valor)
     precio.append(valor)                 
 # Compruebo las primeras 20
