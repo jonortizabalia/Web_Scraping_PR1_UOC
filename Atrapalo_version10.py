@@ -168,15 +168,7 @@ def Sacar_atributos(espectaculo):
     
     # Localidad (Modificada en v06)
     try:    
-        a = espectaculo.find("p", class_="info").span.text.strip()
-        b = re.findall("\(.*\)",a)
-        if len(b) == 1:
-            c = b[0]
-            localidad = re.sub('[(){}<>]', '', c)
-        elif len(b) == 2:
-            c = b[1]
-            localidad = re.sub('[(){}<>]', '', c)
-        #localidad = espectaculo.find("p", class_="info").span.text.split()[2].strip('()')
+        localidad = espectaculo.find("p", class_="info").span.text.split()[2].strip('()')
     except: localidad = ""
         
     # Precio
