@@ -8,10 +8,10 @@ Práctica 1 (Web Scraping) enmarcada dentro de la asignatura "Tipología y ciclo
 
 ## Ficheros
 
--**espectaculos.py**: documento con el código necesario para realizar el web scraping
--**espectaculos.csv**: fichero csv con el dataset obtenido a partir de Atrapalo
--**PR1_Peso_Ortiz.pdf**: documento pdf con las respuestas de la Práctica
--**nube_palabras.png**: imagen incluida en el documento pdf
+- **espectaculos.py**: documento con el código necesario para realizar el web scraping
+- **espectaculos.csv**: fichero csv con el dataset obtenido a partir de Atrapalo
+- **PR1_Peso_Ortiz.pdf**: documento pdf con las respuestas de la Práctica
+- **nube_palabras.png**: imagen incluida en el documento pdf
 
 ## Consideraciones
 
