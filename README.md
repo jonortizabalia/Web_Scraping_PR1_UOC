@@ -14,17 +14,15 @@ Práctica 1 (Web Scraping) enmarcada dentro de la asignatura "Tipología y ciclo
 
 ## Consideraciones
 
-* El código sería extrapolable a otras páginas Web, en cuyo caso habría que añadir la parte de código para identificar los atributos a extraer.
+* Conceptualmente el código está diseñado para poder **extrapolar** el mecanismo de *web scraping* a otros sites de venta online  y así conseguir una base de datos (bbdd) global actual e histórica de todo el panorama de espectáculos a nivel nacional .
 
-* El código se ha diseñado pensando en una primera carga inicial de datos y unas cargas posteriores de periodicidad diaria. En cada una de éstas se realiza la carga de 1 o 2 de las secciones (o tipos de espectáculo) disponibles en la página web.
+* En cada descarga la bbdd obtenida mantiene toda la **información histórica** descargada hasta el momento, al tiempo que **actualiza** la vigente y **añade** los nuevos espectáculos detectados. 
 
-* Conceptualmente el código está diseñado para poder extrapolar el mecanismo de web scrapping a otros sites de venta online  y así conseguir una base de datos (bbdd) global actual e histórica de todo el panorama de espectáculos a nivel nacional .
+* El código implementa diferentes aspectos que pretenden evitar los posibles bloqueos del *site* al tiempo que es respetuoso con el mismo para que nuestras descargas sean lo menos intrusivas posible. Así, desde el punto de vista de **antibloqueo** se modifican las cabeceras http con el parámetro super-agent y se implementa un mecanismo de N reintentos espaciados en intervalos de X segundos en el supuesto de que el site nos bloquee temporalmente.
 
-* En cada descarga la bbdd obtenida mantiene toda la información histórica descargada hasta el momento, al tiempo que actualiza la vigente y añade los nuevos espectáculos detectados. 
+* En paralelo, y desde el punto de vista del respeto al que hacíamos mención,  se incluye durante la descarga un mecanismo de **supervisión del fichero *robots.txt*** para asegurar que nuestra actividad no es contraria a la política del site y nos alerte en caso contrario. 
 
-* El código implementa diferentes aspectos que pretenden evitar los posibles bloqueos del *site* al tiempo que es respetuoso con el mismo para que nuestras descargas sean lo menos intrusivas posible. Así, desde el punto de vista de antibloqueo se modifican las cabeceras http con el parámetro super-agent y se implementa un mecanismo de N reintentos espaciados en intervalos de X segundos en el supuesto de que el site nos bloquee temporalmente.
-
-* En paralelo, y desde el punto de vista del respeto al que hacíamos mención,  se incluye durante la descarga un mecanismo de supervisión del fichero *robots.txt* para asegurar que nuestra actividad no es contraria a la política del site y nos alerte en caso contrario. Además se evitan las descargas masivas, mediante una rutina automática de descargas diarias incrementales que aseguran que cada día de la semana se descarguen sólo ciertas secciones de espectáculos completando toda la cartelera cada siete días.
+* Las descargas masivas se han evitado mediante una rutina automática de **descargas diarias incrementales** que aseguran que cada día de la semana se descarguen sólo ciertas secciones de espectáculos completando toda la cartelera cada siete días.
 
 ## Recursos
 
